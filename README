@@ -11,3 +11,50 @@ instruction:
   features:TCP flooding from different spoofed IP at different source port
   python tcp-flooding.py sourceIPaddress sourcePort victimIPaddr victimPort
   
+Simulate syn flooding between Vms
+
+prepare the virtual environment with vagrant.
+Virtual machine 1: victim
+Virtual machine 2: 
+
+Logical network topology of VM
+
+
+
+TCP flooding tool at attacker side
+
+I tried Java, C and Python for the TCP flooding client.
+
+Since Java doesn't support raw socket, an alternative way to realize tcp flooding in java is JNI. 
+
+My first draft was C, and improved to multi-threading later. 
+Another version is written in python, I add multi-threading as well.
+
+In order to collect the Syn-received msg easily, I use a ruby script to fetch the data automatically.
+
+Source code file version:
+
+Source File name	Main function	feature	Attack effect
+synflood_ipspoofing.c	Initial attack 	rawsocket	Longest DoS time
+Syn.c	Initial attack 	Multi-threading	medium DoS time
+Tcp-flooding.py	Initial attack 	rawsocket	medium DoS time
+Tcp-flooding-multi-threading.py	Initial attack 	Multi-threading	Longest DoS time
+check_syn_flood.rb	Counter the syn-recv TCP session number		
+
+
+Test environment preparation:
+
+
+
+1. Verify 80 port on virtual mahcine victim	
+
+	
+	
+	
+
+
+
+
+Attacker synflood_ipspoofing
+
+
