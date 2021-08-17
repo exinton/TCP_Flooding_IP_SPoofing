@@ -1,4 +1,5 @@
-
+#include        <stdlib.h>
+#include        <string.h>
 #include	<sys/socket.h>	/* basic socket definitions */
 #include	<netinet/in.h>	/* sockaddr_in{} and other Internet defns */
 #include	<stdio.h>
@@ -96,7 +97,7 @@ int main(int argc, char *argv[])
 	int	sockfd;
 	if((sockfd = socket(PF_INET,SOCK_RAW,IPPROTO_TCP)) < 0)
 			printf("create socket error\n");
-	char datagram[1024],*pseudogram;
+	char datagram[1024] = {}, *pseudogram;
 
 	struct ipheader *iph=datagram;
 	struct tcpheader *tcph=datagram + sizeof(struct ipheader);
@@ -115,7 +116,6 @@ int main(int argc, char *argv[])
 	sin.sin_port=htons(destIP_Port); //convert from host byte order to network byte order
 	sin.sin_addr.s_addr=inet_addr(argv[2]);
 
-	memset(datagram,0,1024);
 	iph->iph_ihl=5;
 	iph->iph_ver=4;
 	iph->iph_tos=0;
